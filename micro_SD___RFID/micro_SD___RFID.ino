@@ -47,11 +47,13 @@ void dump_byte_array(byte *buffer, byte bufferSize) {
   }
   rc522.PICC_HaltA();       // Halt PICC
   rc522.PCD_StopCrypto1();  // Stop encryption on PCD
+  delay(500);
   wSD(buf);
 }
 
 void wSD(String incs) {
   digitalWrite(relay, HIGH);
+  delay(500);
   if (!SD.begin(A4)) { Serial.println("initialization failed!"); }
 
   file = SD.open("absensi.txt", FILE_WRITE);
@@ -66,4 +68,5 @@ void wSD(String incs) {
   }
   incs = "";
   digitalWrite(relay, LOW);
+  delay(500);
 }
